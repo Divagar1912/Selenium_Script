@@ -1,0 +1,138 @@
+1. Write a Selenium script that opens the Firefox browser, maximizes the browser window, navigates 
+to "http://google.com", prints the URL of the current page, reloads the page, and closes the browser.
+
+package SeleniumConcepts.org.guvi;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class FireFox_Browser_Task {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		System.setProperty("webdriver.gecko.driver", "D://Driver//geckodriver.exe//");
+		
+		// opening the firefox browser
+		WebDriver driver = new FirefoxDriver();
+		
+		driver.manage().deleteAllCookies();
+		
+		driver.get("https://www.google.co.in");
+		Thread.sleep(3000);
+		
+		//maximizes the browser window
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+		
+		//getting the current URL
+		String currenturl = driver.getCurrentUrl();
+		System.out.println("The current URL of the page is : "+currenturl);
+		Thread.sleep(3000);
+		
+		//reloads the page
+		driver.navigate().refresh();
+		Thread.sleep(3000);
+		
+		//close the browser
+		driver.close();
+				
+
+	}
+
+}
+
+
+output : The current URL of the page is : https://www.google.co.in/
+
+
+
+
+
+2. Write a Selenium script that opens the Chrome browser, navigates to "https://www.demoblaze.com/", 
+maximizes the browser window, verifies if the title of the page is "STORE", and prints "Page landed on correct website" if the title matches, 
+else prints "Page not landed on correct website".
+
+package SeleniumConcepts.org.guvi;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Second_Script {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		System.setProperty("webdriver.chrome.driver", "D://Driver//chromedriver.exe//");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().deleteAllCookies();
+		
+		driver.get("https://www.demoblaze.com");
+		
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		
+		if(driver.getTitle().equals("STORE")) {
+			System.out.println("Page landed on correct website");
+		}else {
+			System.out.println("Page is not landed on correct website");
+		}
+		Thread.sleep(2000);
+		
+			
+		
+		driver.close();
+		
+	}
+
+}
+
+
+output: Page landed on correct website
+
+
+
+3. Write a Selenium script that opens the chrome browser, navigates to "https://www.wikipedia.org/", 
+maximizes the browser window, searches for the query "Artificial Intelligence", clicks on the "History" section in the search results, 
+and prints the title of the section.
+
+package SeleniumConcepts.org.guvi;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Second_Script {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		System.setProperty("webdriver.chrome.driver", "D://Driver//chromedriver.exe//");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().deleteAllCookies();
+		
+		driver.get("https://www.wikipedia.org/");
+		
+		driver.manage().window().maximize();
+		Thread.sleep(2000);
+		
+		WebElement searchbox = driver.findElement(By.id("searchInput"));
+		searchbox.sendKeys("Artificial Intelligence");
+		Thread.sleep(3000);
+
+		WebElement searchicon = driver.findElement(By.cssSelector("i[data-jsl10n=search-input-button]"));
+		searchicon.click();
+		Thread.sleep(2000);
+			
+			Note: Unable to get the below feauture, Please guide me
+			
+		/*WebElement clickhistory = driver.findElement(By.linkText("vector-toc-text)"));
+		clickhistory.click();
+		Thread.sleep(2000);*/
+		
+		driver.close();
+		
+	}
+
+}
